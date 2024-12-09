@@ -37,15 +37,17 @@ void printPath(TreeNode*node){
 }
 // Duyệt cây thư mục và tìm kiếm tệp/thư mục theo tên
 void findChildAndprintPath(TreeNode* parent, const string& tName) {
-   if(parent->children == nullptr) return;
-        if(parent->name == tName) 
+    if(parent == nullptr) return; 
+    for(TreeNode*child : parent->children)
+    {
+        if(parent->name == tName)
+        { 
+        cout<<"Path:";
         printPath(parent);
-        else{
-            for(TreeNode*child : parent->children)
-            {
-            findChildAndprintPath(child,tName);
-            }
+        cout<<"\n";
         }
+        findChildAndprintPath(child,tName);
+    }
 }
 //đổi tên file
     void renameFile(TreeNode* currentDir, const string& oldName, const string& newName) {
