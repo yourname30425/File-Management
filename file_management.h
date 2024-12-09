@@ -23,4 +23,6 @@ void listDirectory(TreeNode*node);
 void printPath(TreeNode*node);
 
 void deleteNode(TreeNode*node);
+void findChildAndprintPath(TreeNode* parent, const string& tName);
+void renameFile(TreeNode* currentDir, const string& oldName, const string& newName);
 #endif // FILE_MANAGEMENT_H

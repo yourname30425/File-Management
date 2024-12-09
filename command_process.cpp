@@ -66,23 +66,4 @@ void processCommand(TreeNode** currentDir, const string& command){
     else{
         cout<<"Invalid command\n";
     }
-    //đổi tên file
-    void renameFile(TreeNode* currentDir, const string& oldName, const string& newName) {
-    // Tìm file với tên cũ
-    TreeNode* fileNode = findChild(currentDir, oldName);
-    
-    if (fileNode != nullptr && !fileNode->isFolder) {
-        // Tìm file với tên mới, nếu có thông báo lỗi
-        TreeNode* existingFile = findChild(currentDir, newName);
-        if (existingFile != nullptr) {
-            cout << "A file with the new name already exists.\n";
-        } else {
-            // Đổi tên file
-            fileNode->name = newName;
-            cout << "File renamed to " << newName << "\n";
-        }
-    } else {
-        cout << "No such file to rename.\n";
-    }
-}
 }
