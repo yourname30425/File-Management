@@ -35,4 +35,37 @@ void printPath(TreeNode*node){
     printPath(node->parent);
     cout<< node->name<<"\\";
 }
+// Duyệt cây thư mục và tìm kiếm tệp/thư mục theo tên
+void findChildAndprintPath(TreeNode* parent, const string& tName) {
+    if(parent == nullptr) return; 
+    for(TreeNode*child : parent->children)
+    {
+        if(parent->name == tName)
+        { 
+        cout<<"Path:";
+        printPath(parent);
+        cout<<"\n";
+        }
+        findChildAndprintPath(child,tName);
+    }
+}
+//đổi tên file
+    void renameFile(TreeNode* currentDir, const string& oldName, const string& newName) {
+    // Tìm file với tên cũ
+    TreeNode* fileNode = findChild(currentDir, oldName);
+    
+    if (fileNode != nullptr && !fileNode->isFolder) {
+        // Tìm file với tên mới, nếu có thông báo lỗi
+        TreeNode* existingFile = findChild(currentDir, newName);
+        if (existingFile != nullptr) {
+            cout << "A file with the new name already exists.\n";
+        } else {
+            // Đổi tên file
+            fileNode->name = newName;
+            cout << "File renamed to " << newName << "\n";
+        }
+    } else {
+        cout << "No such file to rename.\n";
+    }
+}
 
