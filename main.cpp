@@ -5,12 +5,17 @@
 
 using namespace std;
 
-    // Create the root of the file system
-    string rootName = "root:";
-    TreeNode* root = new TreeNode(rootName, nullptr, true);
+// Create the root of the file system
+string rootName = "root:";
+TreeNode* root = new TreeNode(rootName, nullptr, true);
+
 int main() {
+    // Hiển thị hướng dẫn sử dụng các lệnh khi chương trình chạy
+    showHelp();
+
     TreeNode** rootPtr = &root;
     string command;
+
     while (true) {
         printPath(*rootPtr);
         cout << " > ";

@@ -4,6 +4,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <cstdlib>
+#include <fstream>
+#include <sstream>
+
+
+
+using namespace std;
 
 // Define the TreeNode structure
 struct TreeNode {
@@ -23,6 +31,19 @@ void listDirectory(TreeNode*node);
 void printPath(TreeNode*node);
 
 void deleteNode(TreeNode*node);
+
 void findChildAndprintPath(TreeNode* parent, const string& tName);
+
+void renameFolder(TreeNode* currentDir, const string& oldName, const string& newName);
+
 void renameFile(TreeNode* currentDir, const string& oldName, const string& newName);
+
+void clearScreen();
+
+void showHelp();
+
+void listSubtree(TreeNode* node, const string& indent = "");
+
+void goToRoot(TreeNode** currentDir);
+
 #endif // FILE_MANAGEMENT_H
