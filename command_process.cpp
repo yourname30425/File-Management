@@ -45,13 +45,21 @@ void processCommand(TreeNode** currentDir, const string& command){
     //tạo thư mục mới
     else if(command.substr(0,6) == "mkdir "){
         string DirName = command.substr(6);
-        addChild(*currentDir,DirName,true);
+        if (checkChild(*currentDir,DirName)){
+            cout<<"Folder already exists\n";
+            return;
+        }
+        else addChild(*currentDir,DirName,true);
     }
 
     //tạo file mới
     else if(command.substr(0,6) == "touch "){
         string FileName = command.substr(6);
-        addChild(*currentDir,FileName,false);
+        if (checkChild(*currentDir,FileName)){
+            cout<<"Folder already exists\n";
+            return;
+        }
+        else addChild(*currentDir,FileName,false);
     }
 
     //xóa file

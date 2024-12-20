@@ -46,4 +46,6 @@ void listSubtree(TreeNode* node, const string& indent = "");
 
 void goToRoot(TreeNode** currentDir);
 
+bool checkChild(TreeNode* parent, const string& name);
+
 #endif // FILE_MANAGEMENT_H

@@ -18,6 +18,7 @@ int main() {
 
     while (true) {
         printPath(*rootPtr);
+        cout << "\b \b";
         cout << " > ";
         getline(cin, command);
         if (command == "exit") {

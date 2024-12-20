@@ -106,9 +106,10 @@ void clearScreen() {
 
 // Hàm hiển thị công dụng các lệnh
 void showHelp() {
-    cout << "Welcome to File Explorer Stimulation\n";
+    cout<<"\033[32m";
+    cout << "\033[31m Welcome to File Explorer Stimulation\n \033[32m";
     cout << "-------------------------------------------\n";
-    cout << "List of available commands and their usage:\n";
+    cout << "\033[33m List of available commands and their usage:\n \033[32m";
     cout << "-------------------------------------------\n";
     cout << "1. cls                 - Clear the terminal screen.\n";
     cout << "2. ls                  - List all files and directories in the current directory.\n";
@@ -124,6 +125,7 @@ void showHelp() {
     cout << "12. help               - Show all commands and their usage\n";
     cout << "-------------------------------------------\n";
     cout << "Type any of these commands to perform the action.\n";
+    cout<<"\033[0m";
 }
 
 // Hàm đệ quy để liệt kê tất cả thư mục và file từ thư mục hiện tại
@@ -147,5 +149,11 @@ void goToRoot(TreeNode** currentDir) {
 
     cout << "You are now in the root directory.\n";
 }
-
+//hàm kiểm tra xem thư mục cha có thư mục con không
+bool checkChild(TreeNode* parent, const string& name){
+    for(TreeNode* child : parent->children){
+        if(child->name == name) return true;
+    }
+    return false;
+}
 
