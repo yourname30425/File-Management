@@ -159,18 +159,6 @@ bool checkChild(TreeNode* parent, const string& name){
     return false;
 }
 
-// Hàm sắp xếp các thư mục và tệp tin theo tên
- void sortChildren(TreeNode* parent){
-    if (parent == nullptr || parent->children.empty()) return;
-
-    // Sắp xếp các phần tử trong danh sách children theo tên
-    std::sort(parent->children.begin(), parent->children.end(), [](TreeNode* a, TreeNode* b) {
-        return a->name < b->name; // So sánh tên để sắp xếp theo thứ tự tăng dần
-    });
-
-    cout << "Directory contents sorted by name.\n";
-}
-
 void findAndNavigateOrShowPath(TreeNode** currentDir, const std::string& targetName) {
     vector<TreeNode*> matchingNodes;
 
@@ -239,3 +227,42 @@ void findAndNavigateOrShowPath(TreeNode** currentDir, const std::string& targetN
     }
 }
 
+void quickSort(vector<TreeNode*>& children, int low, int high) {
+    if (low < high) {
+        // Phân hoạch mảng
+        int pivotIndex = partition(children, low, high);
+
+        // Gọi đệ quy sắp xếp các phần bên trái và phải của pivot
+        quickSort(children, low, pivotIndex - 1);
+        quickSort(children, pivotIndex + 1, high);
+    }
+}
+
+int partition(vector<TreeNode*>& children, int low, int high) {
+    TreeNode* pivot = children[high]; // Chọn phần tử cuối làm pivot
+    int i = low - 1;
+
+    for (int j = low; j < high; ++j) {
+        // So sánh theo tên
+        if (children[j]->name <= pivot->name) {
+            ++i;
+            swap(children[i], children[j]); // Hoán đổi các phần tử
+        }
+    }
+
+    // Đưa pivot về đúng vị trí
+    swap(children[i + 1], children[high]);
+    return i + 1; // Trả về chỉ số pivot
+}
+
+void sortChildren(TreeNode* currentDir) {
+    if (!currentDir || currentDir->children.empty()) {
+        cout << "No items to sort.\n";
+        return;
+    }
+
+    vector<TreeNode*>& children = currentDir->children;
+
+    // Gọi Quick Sort trên danh sách các phần tử con
+    quickSort(children, 0, children.size() - 1);
+}
