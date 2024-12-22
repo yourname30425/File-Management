@@ -8,6 +8,8 @@
 #include <cstdlib>
 #include <fstream>
 #include <sstream>
+#include <functional>
+
 
 
 
@@ -45,5 +47,11 @@ void showHelp();
 void listSubtree(TreeNode* node, const string& indent = "");
 
 void goToRoot(TreeNode** currentDir);
+
+bool checkChild(TreeNode* parent, const string& name);
+
+void sortChildren(TreeNode* parent);
+
+void findAndNavigateOrShowPath(TreeNode** currentDir, const std::string& targetName);
 
 #endif // FILE_MANAGEMENT_H

@@ -45,13 +45,21 @@ void processCommand(TreeNode** currentDir, const string& command){
     //tạo thư mục mới
     else if(command.substr(0,6) == "mkdir "){
         string DirName = command.substr(6);
-        addChild(*currentDir,DirName,true);
+        if (checkChild(*currentDir,DirName)){
+            cout<<"Folder already exists\n";
+            return;
+        }
+        else addChild(*currentDir,DirName,true);
     }
 
     //tạo file mới
     else if(command.substr(0,6) == "touch "){
         string FileName = command.substr(6);
-        addChild(*currentDir,FileName,false);
+        if (checkChild(*currentDir,FileName)){
+            cout<<"Folder already exists\n";
+            return;
+        }
+        else addChild(*currentDir,FileName,false);
     }
 
     //xóa file
@@ -109,6 +117,24 @@ void processCommand(TreeNode** currentDir, const string& command){
         }
     }
 
+    // Lệnh sắp xếp các tệp tin và thư mục theo tên
+    else if (command == "sort") {
+        sortChildren(*currentDir);
+        cout << "Contents sorted alphabetically.\n";
+    }
+
+    // Lệnh tìm kiếm và hiển thị đường dẫn của thư mục hoặc file
+    else if (command.find("find ") == 0) {  
+        string targetName = command.substr(5);  
+    
+        if (targetName.empty()) {
+            cout << "Invalid syntax. Usage: find <name>\n";
+            return;
+        }
+
+        findAndNavigateOrShowPath(currentDir, targetName);
+        return;
+    }
 
     else{
         cout<<"Invalid command\n";
