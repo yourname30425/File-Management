@@ -117,6 +117,24 @@ void processCommand(TreeNode** currentDir, const string& command){
         }
     }
 
+    // Lệnh sắp xếp các tệp tin và thư mục theo tên
+    else if (command == "sort") {
+        sortChildren(*currentDir);
+        cout << "Contents sorted alphabetically.\n";
+    }
+
+    // Lệnh tìm kiếm và hiển thị đường dẫn của thư mục hoặc file
+    else if (command.find("find ") == 0) {  
+        string targetName = command.substr(5);  
+    
+        if (targetName.empty()) {
+            cout << "Invalid syntax. Usage: find <name>\n";
+            return;
+        }
+
+        findAndNavigateOrShowPath(currentDir, targetName);
+        return;
+    }
 
     else{
         cout<<"Invalid command\n";

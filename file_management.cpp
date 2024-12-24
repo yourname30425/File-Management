@@ -23,6 +23,17 @@ void listDirectory(TreeNode*node){
     for(TreeNode*TChild : node->children) cout<< (TChild->isFolder? " [Folder] " :" [File] ")<< TChild->name<<"\n";
 }
 
+// Hàm đệ quy để liệt kê tất cả thư mục và file từ thư mục hiện tại
+void listSubtree(TreeNode* node, const string& indent) {
+    // Hiển thị node hiện tại
+    cout << indent << (node->isFolder ? "[Folder] " : "[File] ") << node->name << "\n";
+    
+    // Duyệt qua tất cả các thư mục và file con
+    for (TreeNode* child : node->children) {
+        listSubtree(child, indent + "  ");  // Thêm indent cho node con
+    }
+}
+
 // Xóa thư mục con/file
 void deleteNode(TreeNode*node){
     if(!node->children.empty()){
@@ -121,11 +132,14 @@ void showHelp() {
     cout << "8. touch <file>        - Create a new file with name <file>.\n";
     cout << "9. rm <file>           - Remove a file with name <file>.\n";
     cout << "10. rmdir <dir>        - Remove a directory with name <dir>.\n";
-    cout << "11. rename <old> <new> - Rename a file from <old> name to <new> name.\n";
-    cout << "12. help               - Show all commands and their usage\n";
+    cout << "11. find <name>        - Find and print the path of a folder/a file with name <name>.\n";
+    cout << "12. sort               - Sort the contents of the current directory by name.\n";       
+    cout << "13. rename <old> <new> - Rename a file from <old> name to <new> name.\n";
+    cout << "14. help               - Show all commands and their usage\n";
     cout << "-------------------------------------------\n";
     cout << "Type any of these commands to perform the action.\n";
     cout<<"\033[0m";
+
 }
 
 // Hàm đệ quy để liệt kê tất cả thư mục và file từ thư mục hiện tại
@@ -157,3 +171,43 @@ bool checkChild(TreeNode* parent, const string& name){
     return false;
 }
 
+
+void quickSort(vector<TreeNode*>& children, int low, int high) {
+    if (low < high) {
+        // Phân hoạch mảng
+        int pivotIndex = partition(children, low, high);
+
+        // Gọi đệ quy sắp xếp các phần bên trái và phải của pivot
+        quickSort(children, low, pivotIndex - 1);
+        quickSort(children, pivotIndex + 1, high);
+    }
+}
+
+int partition(vector<TreeNode*>& children, int low, int high) {
+    TreeNode* pivot = children[high]; // Chọn phần tử cuối làm pivot
+    int i = low - 1;
+
+    for (int j = low; j < high; ++j) {
+        // So sánh theo tên
+        if (children[j]->name <= pivot->name) {
+            ++i;
+            swap(children[i], children[j]); // Hoán đổi các phần tử
+        }
+    }
+
+    // Đưa pivot về đúng vị trí
+    swap(children[i + 1], children[high]);
+    return i + 1; // Trả về chỉ số pivot
+}
+
+void sortChildren(TreeNode* currentDir) {
+    if (!currentDir || currentDir->children.empty()) {
+        cout << "No items to sort.\n";
+        return;
+    }
+
+    vector<TreeNode*>& children = currentDir->children;
+
+    // Gọi Quick Sort trên danh sách các phần tử con
+    quickSort(children, 0, children.size() - 1);
+}

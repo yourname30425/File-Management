@@ -27,7 +27,9 @@ Dự án này là một chương trình quản lý tập tin đơn giản đư�
    - `touch <tên_tập_tin>`: Tạo tập tin mới có tên `<tên_tập_tin>`.
    - `rm <tên_tập_tin>`: Xóa tập tin có tên `<tên_tập_tin>`.
    - `rmdir <tên_thư_mục>`: Xóa thư mục có tên `<tên_thư_mục>` và tất cả các tập tin, thư mục con bên trong.
-   - `rename <tên_t> <tên_mới>`: Đổi tên tập tin và thư mục từ `<tên_cũ>` sang `<tên_mới>`.
+   - `rename <tên_cũ> <tên_mới>`: Đổi tên tập tin và thư mục từ `<tên_cũ>` sang `<tên_mới>`.
+   - `find <tên_thư_mục/tệp_tin>`: Tìm kiếm tệp tin và thư mục.
+   - `sort`: Sắp xết các thư mục và tệp tin theo tên.
    - `exit`: Thoát khỏi chương trình.
    - `cls`: để xóa các dòng chữ trên terminal
 

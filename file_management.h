@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <sstream>
-
+#include <functional>
 
 
 using namespace std;
@@ -47,5 +47,14 @@ void listSubtree(TreeNode* node, const string& indent = "");
 void goToRoot(TreeNode** currentDir);
 
 bool checkChild(TreeNode* parent, const string& name);
+
+
+void quickSort(vector<TreeNode*>& children, int low, int high); 
+
+int partition(vector<TreeNode*>& children, int low, int high);
+
+void sortChildren(TreeNode* parent);
+
+
 
 #endif // FILE_MANAGEMENT_H
