@@ -48,12 +48,13 @@ void goToRoot(TreeNode** currentDir);
 
 bool checkChild(TreeNode* parent, const string& name);
 
+
 void quickSort(vector<TreeNode*>& children, int low, int high); 
 
 int partition(vector<TreeNode*>& children, int low, int high);
 
 void sortChildren(TreeNode* parent);
 
-void findAndNavigateOrShowPath(TreeNode** currentDir, const std::string& targetName);
+
 
 #endif // FILE_MANAGEMENT_H
