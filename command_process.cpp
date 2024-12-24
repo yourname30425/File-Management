@@ -132,7 +132,7 @@ void processCommand(TreeNode** currentDir, const string& command){
             return;
         }
 
-        findAndNavigateOrShowPath(currentDir, targetName);
+         findChildAndprintPath(currentDir, targetName);
         return;
     }
 
