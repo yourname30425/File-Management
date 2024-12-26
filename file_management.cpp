@@ -23,17 +23,6 @@ void listDirectory(TreeNode*node){
     for(TreeNode*TChild : node->children) cout<< (TChild->isFolder? " [Folder] " :" [File] ")<< TChild->name<<"\n";
 }
 
-// Hàm đệ quy để liệt kê tất cả thư mục và file từ thư mục hiện tại
-void listSubtree(TreeNode* node, const string& indent) {
-    // Hiển thị node hiện tại
-    cout << indent << (node->isFolder ? "[Folder] " : "[File] ") << node->name << "\n";
-    
-    // Duyệt qua tất cả các thư mục và file con
-    for (TreeNode* child : node->children) {
-        listSubtree(child, indent + "  ");  // Thêm indent cho node con
-    }
-}
-
 // Xóa thư mục con/file
 void deleteNode(TreeNode*node){
     if(!node->children.empty()){
@@ -52,14 +41,14 @@ void printPath(TreeNode*node){
 }
 
 // Duyệt cây thư mục và tìm kiếm tệp/thư mục theo tên
-void findChildAndprintPath(TreeNode* parent, const string& tName) {
-    if(parent == nullptr) return; 
-    for(TreeNode*child : parent->children)
+void findChildAndprintPath(TreeNode* cur, const string& tName) {
+    if(cur == nullptr) return; 
+    for(TreeNode*child : cur->children)
     {
-        if(parent->name == tName)
+        if(child->name == tName)
         { 
         cout<<"Path:";
-        printPath(parent);
+        printPath(child);
         cout<<"\n";
         }
         findChildAndprintPath(child,tName);

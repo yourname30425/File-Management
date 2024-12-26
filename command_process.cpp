@@ -124,7 +124,7 @@ void processCommand(TreeNode** currentDir, const string& command){
     }
 
     // Lệnh tìm kiếm và hiển thị đường dẫn của thư mục hoặc file
-    else if (command.find("find ") == 0) {  
+    else if (command.substr(0,5) == "find ") {  
         string targetName = command.substr(5);  
     
         if (targetName.empty()) {
@@ -132,7 +132,7 @@ void processCommand(TreeNode** currentDir, const string& command){
             return;
         }
 
-         findChildAndprintPath(currentDir, targetName);
+         findChildAndprintPath(*currentDir, targetName);
         return;
     }
 
