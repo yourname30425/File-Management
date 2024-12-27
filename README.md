@@ -1,3 +1,10 @@
+# Thành viên nhóm
+- Nguyễn Đức Mạnh - 20233519.
+- Vũ Phạm Trường Duy - 20233369.
+- Nguyễn Duy Tuấn - 20233699.
+- Phạm Đình Minh Thiên - 20233655.
+
+
 # Quản Lý Tập Tin
 
 ## Giới Thiệu
@@ -40,3 +47,9 @@ Dự án này là một chương trình quản lý tập tin đơn giản đư�
 
 2. **Biên Dịch Chương Trình**:
    - Sử dụng lệnh sau để biên dịch chương trình:
+     
+     `g++ -o main main.cpp command_process.cpp file_management.cpp`
+
+
+## Video Demo và tài liệu  
+- ⁦https://drive.google.com/drive/folders/1-mePsj06MzpdExZcxIdeLBKT2xFAnIMW?usp=drive_link
